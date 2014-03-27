@@ -1,0 +1,25 @@
+[alias]
+  ci = commit
+  co = checkout
+  f = fetch
+  s = status
+  b = branch
+  d = diff
+  a = add
+  l = log
+[core]
+	excludesfile = ~/.gitignore
+[color]
+  ui = auto
+[merge]
+  # Show merge statistics after merge.
+  stat = true
+  ff = only
+[include]
+  path = .gitconfig.local
+[commit]
+  template = ~/.gitmessage
+[push]
+	default = current
+[pull]
+	ff = only

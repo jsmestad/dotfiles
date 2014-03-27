@@ -1,0 +1,2 @@
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
