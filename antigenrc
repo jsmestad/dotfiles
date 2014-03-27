@@ -1,0 +1,19 @@
+# Load antigen library
+source ~/.zsh/antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Common bundles
+antigen bundle git
+antigen bundle git-extras
+antigen bundle heroku
+antigen bundle tmux
+antigen bundle gem
+antigen bundle command-not-found
+
+# Local config
+[[ -f ~/.antigenrc.local ]] && source ~/.antigenrc.local
+
+# Tell antigen that you're done
+antigen apply

@@ -1,5 +1,5 @@
 # load our own completion functions
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/.zsh/completion ~/.zsh/functions $fpath)
 
 # completion
 autoload -U compinit
@@ -8,6 +8,9 @@ compinit
 # use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
+
+# antigen
+[[ -f ~/.antigenrc ]] && source ~/.antigenrc
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
