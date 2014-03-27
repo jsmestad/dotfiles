@@ -9,11 +9,11 @@ compinit
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# antigen
-[[ -f ~/.antigenrc ]] && source ~/.antigenrc
-
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# antigen
+[[ -f ~/.antigenrc ]] && source ~/.antigenrc
