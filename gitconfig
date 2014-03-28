@@ -8,7 +8,7 @@
   a = add
   l = log
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [color]
   ui = auto
 [merge]
@@ -20,6 +20,6 @@
 [commit]
   template = ~/.gitmessage
 [push]
-	default = current
+  default = current
 [pull]
-	ff = only
+  ff = only
