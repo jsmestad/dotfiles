@@ -37,7 +37,7 @@ set expandtab
 set number
 set numberwidth=5
 
-color jellybeans+
+color jellybeans
 
 " Add Rails, Fugitive, and RVM info to statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rbenv#statusline()}%=%-14.(%l,%c%V%)\ %P
