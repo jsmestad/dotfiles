@@ -1,5 +1,4 @@
 alias migrate="rake db:migrate db:rollback && rake db:migrate"
-alias m="migrate"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
