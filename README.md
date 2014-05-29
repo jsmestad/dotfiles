@@ -128,6 +128,17 @@ configuration:
 * Includes extensions for `gem`.
 * Includes extensions for `command-not-found`.
 
+[emacs](http://www.gnu.org/software/emacs/) configuration:
+* Automatic package installation on first run
+* Ruby support
+* JavaScript support
+* CoffeeScript support
+* Go support
+* YASnippet
+* Magit (Best git client ever)
+* Projectile (Quickly switch between files)
+* A bunch of themes in `emacs.d/elisp`
+
 Credits
 -------
 
@@ -138,4 +149,3 @@ Original Credits:
 
     Dotfiles is Â© 2009-2014 thoughtbot, inc. It is free software and may be
     redistributed under MIT LICENSE.
-
