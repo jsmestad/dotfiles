@@ -32,12 +32,13 @@ set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 set expandtab
+set shell=/usr/local/bin/zsh
 
 " Numbers
 set number
 set numberwidth=5
 
-color jellybeans+
+color jellybeans
 
 " Add Rails, Fugitive, and RVM info to statusline
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rbenv#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -151,11 +152,11 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Open NERDTree if no file specified
-  autocmd vimenter * if !argc() | NERDTree | endif  
+  autocmd vimenter * if !argc() | NERDTree | endif
 
-  " hint to keep lines short                                                      
-  if exists('+colorcolumn')                                                       
-    set colorcolumn=80                                                            
+  " hint to keep lines short
+  if exists('+colorcolumn')
+    set colorcolumn=80
   else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
   endif
