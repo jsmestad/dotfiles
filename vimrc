@@ -32,6 +32,7 @@ set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 set expandtab
+set shell=/usr/local/bin/zsh
 
 " Numbers
 set number
@@ -151,11 +152,11 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Open NERDTree if no file specified
-  autocmd vimenter * if !argc() | NERDTree | endif  
+  autocmd vimenter * if !argc() | NERDTree | endif
 
-  " hint to keep lines short                                                      
-  if exists('+colorcolumn')                                                       
-    set colorcolumn=80                                                            
+  " hint to keep lines short
+  if exists('+colorcolumn')
+    set colorcolumn=80
   else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
   endif

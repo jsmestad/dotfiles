@@ -1,2 +1,5 @@
+alias migrate="rake db:migrate db:rollback && rake db:migrate"
+alias git-cleanup="git fetch -p"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
