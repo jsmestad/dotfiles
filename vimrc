@@ -181,6 +181,12 @@ augroup tech_words_to_avoid
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
+" Mapping capital w and q
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
