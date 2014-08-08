@@ -1,0 +1,9 @@
+function pair-with() {
+  if [ "$2" != "" ]; then
+    USER=$2
+  else
+    USER='artemis'
+  fi
+  echo "Connecting to ${USER}@$1.vpn.artemisdev.net"
+  $(which mosh) ${USER}@"$1".vpn.artemisdev.net --server=/usr/local/bin/mosh-server
+}
