@@ -10,7 +10,7 @@ fi
 export POW_EXT_DOMAINS="ngrok.com"
 
 export GATEKEEPER_HOST="http://gatekeeper.dev"
-export KAMAJI_HOST="http://minos.dev"
+export KAMAJI_HOST="http://kamaji.dev"
 export KATO_HOST="http://kato.dev"
 export MINOS_HOST="http://minos.dev"
 # export MINOS_HOST="https://minos.stage.artemisdev.net"
