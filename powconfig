@@ -9,7 +9,7 @@ fi
 
 export POW_EXT_DOMAINS="ngrok.com"
 
-if [ -f "~/.powconfig.local" ]; then
-  source "~/.powconfig.local"
+if [ -f ~/.powconfig.local ]; then
+  source ~/.powconfig.local
 fi
 
