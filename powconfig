@@ -16,4 +16,5 @@ export MINOS_HOST="http://minos.dev"
 # export MINOS_HOST="https://minos.stage.artemisdev.net"
 # export KATO_HOST='https://kato.stage.artemisdev.net'
 # export KAMAJI_HOST='https://kamaji.stage.artemisdev.net'
+# export TSA_HOST="https://tsa.stage.artemisdev.net"
 export TSA_HOST="http://tsa.dev"
