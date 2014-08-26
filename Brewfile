@@ -34,7 +34,7 @@ install zsh-completions
 install wget 
 
 # Install more recent versions of some OS X tools
-install mvim --override-system-vim
+install macvim --override-system-vim
 
 # Install other useful binaries
 install ack
