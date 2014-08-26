@@ -1,0 +1,7 @@
+export RBENV_ROOT=/usr/local/var/rbenv
+
+export PATH="/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
+
+export EDITOR="vim"
+
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/"

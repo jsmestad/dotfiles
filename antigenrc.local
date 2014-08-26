@@ -1,0 +1,5 @@
+antigen theme murilasso
+
+antigen bundle git-flow
+antigen bundle rbenv
+antigen bundle osx
