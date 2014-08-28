@@ -10,6 +10,11 @@ antigen bundle git-extras
 antigen bundle heroku
 antigen bundle tmux
 antigen bundle gem
+antigen bundle command-not-found
+antigen bundle git-flow
+antigen bundle rbenv
+
+antigen theme murilasso
 
 # Local config
 [[ -f ~/.antigenrc.local ]] && source ~/.antigenrc.local
