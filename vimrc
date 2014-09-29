@@ -5,6 +5,9 @@ set nocompatible
 " Set map leader
 let mapleader = ","
 
+" Set default highlight when searching
+set hlsearch
+
 " I dont want backups.
 set nobackup
 set nowritebackup
