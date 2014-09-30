@@ -187,8 +187,12 @@ augroup END
 " Mapping capital w and q
 :command WQ wq
 :command Wq wq
+:command Qa qa
 :command W w
 :command Q q
+
+" Turn on indent guides by default
+let g:indent_guides_enable_on_vim_startup = 1
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

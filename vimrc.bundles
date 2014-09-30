@@ -10,6 +10,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Define bundles via Github repos
+Bundle 'airblade/vim-gitgutter'
 Bundle 'burnettk/vim-angular'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'danro/rename.vim'
@@ -21,6 +22,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'millermedeiros/vim-statline'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'othree/javascript-libraries-syntax.vim'
 Bundle 'pangloss/vim-javascript'
