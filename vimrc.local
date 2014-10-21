@@ -8,3 +8,6 @@ augroup LOCAL_SETUP
   " Enable the following frameworks
   let g:used_javascript_libs = 'jquery,underscore'
 augroup end
+
+" Use system pasteboard
+set clipboard=unnamed
