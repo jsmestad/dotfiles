@@ -1,0 +1,13 @@
+" Run specs in iTerm
+let g:rspec_runner = "os_x_iterm"
+
+" Enables concealing characters. For example, function is replaced with ƒ
+let g:javascript_conceal = 1
+
+augroup LOCAL_SETUP
+  " Enable the following frameworks
+  let g:used_javascript_libs = 'jquery,underscore'
+augroup end
+
+" Use system pasteboard
+set clipboard=unnamed
