@@ -151,6 +151,9 @@ augroup vimrcEx
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+  " Set syntax for ES6 to JavaScript
+  autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+
   " Open NERDTree if no file specified
   autocmd vimenter * if !argc() | NERDTree | endif
 
