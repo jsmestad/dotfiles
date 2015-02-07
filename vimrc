@@ -5,9 +5,6 @@ set nocompatible
 " Set map leader
 let mapleader = ","
 
-" Set default highlight when searching
-set hlsearch
-
 " I dont want backups.
 set nobackup
 set nowritebackup
@@ -60,10 +57,10 @@ let g:yankring_persist=0
 set guifont=PanicSans:h15
 
 " Get off my lawn (make vim keys, not war)
-" nnoremap <Left> :echoe "Use h"<CR>
-" nnoremap <Right> :echoe "Use l"<CR>
-" nnoremap <Up> :echoe "Use k"<CR>
-" nnoremap <Down> :echoe "Use j"<CR>
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-rspec mappings
 nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
@@ -154,6 +151,9 @@ augroup vimrcEx
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
+  " Set syntax for ES6 to JavaScript
+  autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+
   " Open NERDTree if no file specified
   autocmd vimenter * if !argc() | NERDTree | endif
 
@@ -183,12 +183,6 @@ augroup tech_words_to_avoid
   autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
   autocmd BufWinLeave * call clearmatches()
 augroup END
-
-" Mapping capital w and q
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
