@@ -23,3 +23,6 @@
   default = current
 [pull]
   ff = only
+[user]
+	name = Justin Smestad
+	email = justin.smestad@gmail.com
