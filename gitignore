@@ -1,3 +1,4 @@
+.divshot-cache/**/*
 *.DS_Store
 *.sw[nop]
 .bundle
