@@ -48,7 +48,7 @@ nnoremap <C-B> :BufExplorer<cr>
 let g:bufExplorerShowRelativePath=1
 
 " Disable Syntastic for SASS/SCSS
-let g:syntastic_disabled_filetypes = ['sass', 'scss']
+" let g:syntastic_disabled_filetypes = ['sass', 'scss']
 
 " Disable persisting yankring
 let g:yankring_persist=0
@@ -108,8 +108,11 @@ let NERDRemoveAltComs = 0
 
 " Syntastic
 let g:syntastic_enable_signs = 1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+" let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
 
 " Gist
 let g:gist_clip_command = 'pbcopy'

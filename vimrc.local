@@ -17,3 +17,17 @@ set clipboard=unnamed
 
 " Reload files that change outside of vim
 set autoread
+
+" Use haml-lint, installed via Rubygems
+let g:syntastic_haml_checkers = ['haml_lint']
+
+" Use scss-lint, installed via Rubygems
+let g:syntastic_scss_checkers = ['scss_lint']
+
+" Allow syntastic to aggregate errors
+let g:syntastic_aggregate_errors = 1
+
+" Use // instead of /* */ in CSS files
+let g:NERD_scss_alt_type=1
+let g:NERD_sass_alt_type=1
+

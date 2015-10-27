@@ -17,6 +17,7 @@ Bundle 'burnettk/vim-angular'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'danro/rename.vim'
 Bundle 'dsawardekar/ember.vim'
+Bundle 'hail2u/vim-css3-syntax'
 Bundle 'heartsentwined/vim-ember-script'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
@@ -49,7 +50,6 @@ Bundle 'vim-scripts/YankRing.vim'
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'vim-scripts/csv.vim'
 Bundle 'vim-scripts/ctags.vim'
-
 Bundle 'vim-scripts/bats.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
