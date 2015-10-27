@@ -1,0 +1,33 @@
+" Run specs in iTerm
+let g:rspec_runner = "os_x_iterm"
+
+" Enables concealing characters. For example, function is replaced with ƒ
+let g:javascript_conceal = 1
+
+" Close preview window upon selection
+let g:ycm_autoclose_preview_window_after_completion=1
+
+augroup LOCAL_SETUP
+  " Enable the following frameworks
+  let g:used_javascript_libs = 'jquery,underscore'
+augroup end
+
+" Use system pasteboard
+set clipboard=unnamed
+
+" Reload files that change outside of vim
+set autoread
+
+" Use haml-lint, installed via Rubygems
+let g:syntastic_haml_checkers = ['haml_lint']
+
+" Use scss-lint, installed via Rubygems
+let g:syntastic_scss_checkers = ['scss_lint']
+
+" Allow syntastic to aggregate errors
+let g:syntastic_aggregate_errors = 1
+
+" Use // instead of /* */ in CSS files
+let g:NERD_scss_alt_type=1
+let g:NERD_sass_alt_type=1
+
