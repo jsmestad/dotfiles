@@ -30,9 +30,8 @@ export PATH="$HOME/.bin:$PATH"
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
 # antigen
 [[ -f ~/.antigenrc ]] && source ~/.antigenrc
 
-export NVM_DIR="/Users/Smestad/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
