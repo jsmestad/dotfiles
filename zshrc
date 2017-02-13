@@ -18,12 +18,13 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
+# load custom plugins functions
+# for function in ~/.zsh/plugins/*; do
+  # source $function
+# done
+
 # enable colored output from ls, etc
 export CLICOLOR=1
-
-# load dotfiles scripts
-export PATH="$HOME/.bin:$PATH"
-
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
@@ -32,6 +33,8 @@ export PATH="$HOME/.bin:$PATH"
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
-# antigen
-[[ -f ~/.antigenrc ]] && source ~/.antigenrc
+# zplug
+[[ -f ~/.zplugrc ]] && source ~/.zplugrc
+
+
 
