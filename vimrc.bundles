@@ -53,6 +53,7 @@ Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'vim-scripts/csv.vim'
 Bundle 'vim-scripts/ctags.vim'
 Plugin 'kylef/apiblueprint.vim'
+Plugin 'mileszs/ack.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
