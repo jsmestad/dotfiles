@@ -26,6 +26,11 @@ done
 # enable colored output from ls, etc
 export CLICOLOR=1
 
+export BLOCK_SIZE=human-readable # https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html
+export HISTSIZE=11000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
