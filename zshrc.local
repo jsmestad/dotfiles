@@ -27,7 +27,9 @@ if which pyspark > /dev/null; then
   export PYSPARK_DRIVER_PYTHON_OPTS=notebook
 fi
 
-export ES_HEAP_SIZE=128m
+# ES < 5.x
+# export ES_HEAP_SIZE=128m
+export ES_JAVA_OPTS="-Xms128m -Xmx128m"
 
 alias redis="redis-server /usr/local/etc/redis.conf"
 
