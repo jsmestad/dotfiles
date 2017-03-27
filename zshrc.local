@@ -8,8 +8,8 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt share_history
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# . "/usr/local/opt/nvm/nvm.sh"
 
 # Load rbenv automatically by appending
 # the following to ~/.zshrc:
