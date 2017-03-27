@@ -1,0 +1,25 @@
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "~/.zsh/plugins/rbenv.zsh", from:local
+#zplug "plugins/brew",   from:oh-my-zsh, as:plugin
+#zplug "plugins/gem",    from:oh-my-zsh, as:plugin
+#zplug "plugins/git",    from:oh-my-zsh, as:plugin
+#zplug "plugins/heroku", from:oh-my-zsh, as:plugin
+#zplug "plugins/tmux",   from:oh-my-zsh, as:plugin
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+
+# zplug "themes/murilasso", from:oh-my-zsh, as:theme
+zplug "jsmestad/9424d91b7639a1473f1f8affdd8881db", from:gist, use:murilasso.zsh-theme, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose

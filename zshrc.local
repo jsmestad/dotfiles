@@ -1,0 +1,35 @@
+# ZSH history
+setopt append_history
+setopt hist_expire_dups_first
+setopt hist_fcntl_lock
+setopt hist_ignore_all_dups
+setopt hist_lex_words
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt share_history
+
+# export NVM_DIR="$HOME/.nvm"
+# . "/usr/local/opt/nvm/nvm.sh"
+
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+eval "$(rbenv init -)"
+
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+if which java > /dev/null; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+
+if which pyspark > /dev/null; then
+  export SPARK_HOME="/usr/local/Cellar/apache-spark/2.1.0/libexec/"
+  export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/build:$PYTHONPATH
+  export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
+  export PYSPARK_DRIVER_PYTHON=jupyter
+  export PYSPARK_DRIVER_PYTHON_OPTS=notebook
+fi
+
+# ES < 5.x
+# export ES_HEAP_SIZE=128m
+export ES_JAVA_OPTS="-Xms128m -Xmx128m"
+
+alias redis="redis-server /usr/local/etc/redis.conf"
+

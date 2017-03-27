@@ -18,18 +18,28 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
+# load custom plugins functions
+# for function in ~/.zsh/plugins/*; do
+  # source $function
+# done
+
 # enable colored output from ls, etc
 export CLICOLOR=1
 
-# load dotfiles scripts
-export PATH="$HOME/.bin:$PATH"
-
+export BLOCK_SIZE=human-readable # https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html
+export HISTSIZE=11000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
-# antigen
-[[ -f ~/.antigenrc ]] && source ~/.antigenrc
+# zplug
+[[ -f ~/.zplugrc ]] && source ~/.zplugrc
+
+
+

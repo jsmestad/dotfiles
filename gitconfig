@@ -7,6 +7,7 @@
   d = diff
   a = add
   l = log
+	ctags = !.git/hooks/ctags
 [core]
   excludesfile = ~/.gitignore
 [color]
@@ -23,6 +24,7 @@
   default = current
 [pull]
   ff = only
-[user]
-	name = Justin Smestad
-	email = justin.smestad@gmail.com
+[credential]
+	helper = osxkeychain
+[init]
+	templatedir = ~/.git_template
