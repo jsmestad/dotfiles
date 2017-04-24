@@ -31,31 +31,40 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     better-defaults
+     elixir
+     dash
+     docker
+     (ruby :variables
+           ruby-version-manager 'rvm
+           ruby-test-runner 'rspec)
+     ruby-on-rails
+     osx
      javascript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ivy
-     ;; auto-completion
-     ;; better-defaults
+     helm
+     html
+     yaml
+     markdown
+     git
      emacs-lisp
-     ;; git
-     ;; markdown
+     version-control
+     spell-checking
+     syntax-checking
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(all-the-icons
+                                      spaceline-all-the-icons
+                                      gruvbox-theme
+                                      (jellybeans-plus-theme :location (recipe
+                                                                  :fetcher github
+                                                                  :repo "jsmestad/jellybeans-plus-theme")))
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -113,7 +122,7 @@ values."
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
    ;; List of items to show in startup buffer or an association list of
-   ;; the form `(list-type . list-size)`. If nil then it is disabled.
+   ;; the form `(list-type . list-size)
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    ;; List sizes may be nil, in which case
@@ -127,13 +136,15 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(jellybeans-plus
+                         gruvbox
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Panic Sans"
+   dotspacemacs-default-font '("Hack"
                                :size 15
                                :weight normal
                                :width normal
@@ -247,10 +258,21 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:relative nil
+                               :size-limit-kb 1000)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -281,7 +303,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -291,6 +313,39 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; Patch ruby-mode highlighting
+  (defvar ruby-symbol-face 'ruby-symbol-face)
+  (defface ruby-symbol-face
+    '((t (:inherit ruby-constant-face)))
+    "Syntax highlighting for Ruby symbol."
+    :group 'ruby)
+  (defvar ruby-constant-face 'ruby-constant-face)
+  (defface ruby-constant-face
+    '((t (:inherit font-lock-constant-face)))
+    "Syntax highlighting for Ruby constant."
+    :group 'ruby)
+
+
+  (defun ruby-syntax-highlight-overrides ()
+    (font-lock-add-keywords nil
+                            '(;; Singleton objects.
+                              ("\\(?:^\\|[^.@$:]\\|\\.\\.\\)\\_<\\(self\\|nil\\|true\\|false\\)\\_>"
+                               1 ruby-constant-face)
+                              ;; Symbols.
+                              ("\\(^\\|[^:]\\)\\(:@\\{0,2\\}\\(?:\\sw\\|\\s_\\)+\\)"
+                               (2 ruby-symbol-face)
+                               (3 (unless (and (eq (char-before (match-end 3)) ?=)
+                                               (eq (char-after (match-end 3)) ?>))
+                                    ;; bug#18644
+                                    ruby-symbol-face)
+                                  nil t))
+                              ;; Ruby 1.9-style symbol hash keys.
+                              ("\\(?:^\\s *\\|[[{(,]\\s *\\|\\sw\\s +\\)\\(\\(\\sw\\|_\\)+:\\)[^:]"
+                               (1 (progn (forward-char -1) ruby-symbol-face)))
+                              ))
+    )
+  (add-hook 'ruby-mode-hook 'ruby-syntax-highlight-overrides)
   )
 
 (defun dotspacemacs/user-config ()
@@ -300,6 +355,33 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; General Settings
+  (setq create-lockfiles nil
+        show-trailing-whitespace t
+        flycheck-rubocop-lint-only t
+        flycheck-check-syntax-automatically '(mode-enabled save))
+
+  ;; Indenting
+  (setq css-indent-offset 2
+        js2-basic-offset 2
+        js-indent-level 2)
+
+  ;; Use all-the-icons for NeoTre
+  (setq neo-theme 'icons)
+
+  (setq linum-format "\u2502 %3d ")
+
+  ;; Fix off-looking powerline
+  (setq powerline-default-separator 'bar)
+
+  ;; Bind F8 to open neotree
+  (global-set-key [f8] 'neotree-toggle)
+
+  (with-eval-after-load 'neotree
+    (evil-define-key 'evilified neotree-mode-map (kbd "o") 'neotree-enter)
+    (evil-define-key 'evilified neotree-mode-map (kbd "I") 'neotree-hidden-file-toggle))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -309,12 +391,15 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#d2ceda" "#f2241f" "#67b11d" "#b1951d" "#3a81c3" "#a31db1" "#21b8c7" "#655370"])
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (winum web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler window-numbering which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash async aggressive-indent adaptive-wrap ace-window ace-link avy quelpa package-build spacemacs-theme))))
+    (dockerfile-mode docker tablist docker-tramp smartparens helm helm-core jellybeans-plus-theme flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary reveal-in-osx-finder projectile-rails inflections pbcopy osx-trash osx-dictionary launchctl feature-mode ujelly-theme unfill mwim yaml-mode web-mode web-beautify tern tagedit spaceline-all-the-icons smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake pug-mode orgit ob-elixir mmm-mode minitest markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc helm-gitignore helm-css-scss haml-mode gruvbox-theme autothemer gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-mix flycheck-credo flycheck evil-magit magit magit-popup git-commit with-editor emmet-mode diff-hl coffee-mode chruby bundler inf-ruby all-the-icons font-lock+ alchemist company elixir-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Hack" :foundry "nil" :slant normal :weight normal :height 150 :width normal)))))
