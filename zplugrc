@@ -11,6 +11,8 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "djui/alias-tips"
+zplug "greymd/docker-zsh-completion"
 
 # zplug "themes/murilasso", from:oh-my-zsh, as:theme
 zplug "jsmestad/9424d91b7639a1473f1f8affdd8881db", from:gist, use:murilasso.zsh-theme, as:theme

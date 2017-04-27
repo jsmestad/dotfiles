@@ -1,6 +1,9 @@
 # load our own completion functions
 fpath=(~/.zsh/completion ~/.zsh/functions $fpath)
 
+# Disable "flow control"
+setopt noflowcontrol
+
 # completion
 autoload -U compinit
 compinit
