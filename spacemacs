@@ -389,6 +389,10 @@ you should place your code here."
         js2-basic-offset 2
         js-indent-level 2)
 
+
+  (setq neo-show-hidden-files nil)
+
+  ;; Disable Mouse, we use a GUI
   (xterm-mouse-mode -1)
 
   ;; Use all-the-icons for NeoTre
