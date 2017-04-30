@@ -32,24 +32,24 @@ values."
    dotspacemacs-configuration-layers
    '(
      better-defaults
-     elixir
      dash
      docker
+     elixir
+     emacs-lisp
+     git
+     helm
+     html
+     javascript
+     markdown
+     osx
      (ruby :variables
            ruby-version-manager 'rvm
            ruby-test-runner 'rspec)
      ruby-on-rails
-     osx
-     javascript
-     helm
-     html
-     yaml
-     markdown
-     git
-     emacs-lisp
-     version-control
      spell-checking
      syntax-checking
+     version-control
+     yaml
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
