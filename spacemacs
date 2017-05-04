@@ -385,10 +385,14 @@ you should place your code here."
   (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
 
   ;; Indenting
-  (setq css-indent-offset 2
-        js2-basic-offset 2
-        js-indent-level 2)
+  (setq-default indent-tabs-mode nil
+                tab-width 2
+                css-indent-offset 2
+                js2-basic-offset 2
+                js-indent-level 2)
 
+  ;; Prevent the visual selection overriding my system clipboard
+  (fset 'evil-visual-update-x-selection 'ignore)
 
   (setq neo-show-hidden-files nil)
 
