@@ -8,9 +8,6 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt share_history
 
-# export NVM_DIR="$HOME/.nvm"
-# . "/usr/local/opt/nvm/nvm.sh"
-
 # Load rbenv automatically by appending
 # the following to ~/.zshrc:
 eval "$(rbenv init -)"
@@ -32,4 +29,3 @@ fi
 export ES_JAVA_OPTS="-Xms128m -Xmx128m"
 
 alias redis="redis-server /usr/local/etc/redis.conf"
-

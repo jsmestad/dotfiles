@@ -4,6 +4,10 @@ fpath=(~/.zsh/completion ~/.zsh/functions $fpath)
 # Disable "flow control"
 setopt noflowcontrol
 
+if [[ $TERM == xterm ]]; then
+  TERM=xterm-256color
+fi
+
 # completion
 autoload -U compinit
 compinit

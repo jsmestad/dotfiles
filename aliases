@@ -1,5 +1,8 @@
 alias migrate="rake db:migrate db:rollback && rake db:migrate"
 alias git-cleanup="git fetch -p"
 
+alias dk='docker'
+alias dc='docker-compose'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
