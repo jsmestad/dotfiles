@@ -29,3 +29,5 @@ fi
 export ES_JAVA_OPTS="-Xms128m -Xmx128m"
 
 alias redis="redis-server /usr/local/etc/redis.conf"
+
+export PGHOST='127.0.0.1'
