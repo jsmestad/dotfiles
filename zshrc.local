@@ -1,3 +1,7 @@
 export PGHOST='127.0.0.1'
 export PGPOST='5433'
 export PGUSER='postgres'
+
+hash -d mikasa=~/code/homebot/mikasa
+hash -d homebot-api=~/code/homebot/api
+hash -d homebot-web=~/code/homebot/web
