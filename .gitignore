@@ -1,2 +1,8 @@
 !bin
 /vim/bundle
+
+# Never place `.private` files in git
+*.private
+
+# Comment out this ignore in your self branch, it protects master from local changes
+*.local
