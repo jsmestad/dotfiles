@@ -11,3 +11,4 @@ tmp/**/*
 !tmp/cache/.keep
 zeus.json
 .idea/**/*
+*.private

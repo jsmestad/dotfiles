@@ -1,0 +1,5 @@
+[user]
+   name = Justin Smestad
+   email = justin.smestad@gmail.com
+[include]
+  path = .gitconfig.private
