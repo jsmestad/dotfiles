@@ -1,52 +1,46 @@
-# load our own completion functions
-fpath=(~/.zsh/completion ~/.zsh/functions $fpath)
 
 # Disable "flow control"
 setopt noflowcontrol
 
-if [[ $TERM == xterm ]]; then
-  TERM=xterm-256color
-fi
 
-# completion
-autoload -U compinit
-compinit
-
-# use vim as the visual editor
-export VISUAL=vim
-export EDITOR=$VISUAL
-
-# makes color constants available
-autoload -U colors
-colors
-
-# load custom executable functions
-for function in ~/.zsh/functions/*; do
-  source $function
-done
-
-# load custom plugins functions
-# for function in ~/.zsh/plugins/*; do
-  # source $function
-# done
-
-# enable colored output from ls, etc
-export CLICOLOR=1
-
+# Configure History
+setopt append_history
+setopt hist_expire_dups_first
+setopt hist_fcntl_lock
+setopt hist_ignore_all_dups
+setopt hist_lex_words
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+#setopt share_history
+setopt HIST_IGNORE_SPACE
 export BLOCK_SIZE=human-readable # https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html
 export HISTSIZE=11000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 
-# aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
 
-# Local config
+# completion
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit
+else
+  compinit -C
+fi
+
+# use vim as the visual editor
+export EDITOR='vim'
+
+# enable colored output from ls, etc
+export CLICOLOR=1
+
+# Lazy load nvm on first use
+export NVM_LAZY_LOAD=true
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
-# zplug
-[[ -f ~/.zplugrc ]] && source ~/.zplugrc
+source ~/.zplugrc
 
-
-
+# Aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
