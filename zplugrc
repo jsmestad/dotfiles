@@ -1,0 +1,25 @@
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "~/.zsh", from:local, use:"{awscli-vars,ruby}.zsh"
+zplug "~/.zsh", from:local, use:"java-osx.zsh", if:"[[ $OSTYPE == *darwin* ]]"
+#zplug "plugins/brew",   from:oh-my-zsh, as:plugin
+#zplug "plugins/gem",    from:oh-my-zsh, as:plugin
+#zplug "plugins/git",    from:oh-my-zsh, as:plugin
+#zplug "plugins/heroku", from:oh-my-zsh, as:plugin
+#zplug "plugins/tmux",   from:oh-my-zsh, as:plugin
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "djui/alias-tips"
+zplug "greymd/docker-zsh-completion"
+zplug "lukechilds/zsh-nvm", from:github, as:plugin
+
+zplug "~/.zsh", from:local, use:murilasso.zsh-theme, as:theme
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Then, source plugins and add commands to $PATH
+zplug load

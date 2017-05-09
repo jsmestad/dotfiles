@@ -55,16 +55,6 @@ For example, your `~/.aliases.local` might look like this:
     # Productivity
     alias todo='$EDITOR ~/.todo'
 
-Your `~/.antigenrc.local` might look like this:
-
-    # Development Tools
-    antigen bundle git-flow
-    antigen bundle rbenv
-    antigen bundle capistrano
-
-    # ZSH Theme
-    antigen theme murilasso
-
 Your `~/.gitconfig.local` might look like this:
 
     [alias]
@@ -97,7 +87,6 @@ What's in it?
 * Run [RSpec](https://www.relishapp.com/rspec) specs from vim.
 * Set `<leader>` to a single space.
 * Switch between the last two files with space-space.
-* Syntax highlighting for CoffeeScript, Textile, Cucumber, Haml, Markdown, and
   HTML.
 * Use [Ag](https://github.com/ggreer/the_silver_searcher) instead of Grep when
   available.
@@ -122,12 +111,8 @@ configuration:
 
 [zsh](http://www.zsh.org/) configuration:
 
-* Adds support for [antigen](https://github.com/zsh-users/antigen) config manager.
+* Adds support for [zplug](https://github.com/zplug/zplug) config manager.
 * Includes extensions for `git` and `git-extras`.
-* Includes extensions for `heroku`.
-* Includes extensions for `tmux`.
-* Includes extensions for `gem`.
-* Includes extensions for `command-not-found`.
 
 Credits
 -------
