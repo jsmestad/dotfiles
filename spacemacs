@@ -380,6 +380,13 @@ you should place your code here."
   ;; Version Control
   (setq vc-follow-symlinks t)
 
+  ;; Speed up Projectile by using `sh` (for ZSH, if its slow)
+  ;; Test shell speed with:
+  ;;
+  ;;   for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
+  ;;
+  ;; (setq shell-file-name "/bin/sh")
+
   ;; Remap paste key to be able to paste copied text multiple times
   (defun evil-paste-after-from-0 ()
     (interactive)
