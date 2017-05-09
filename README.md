@@ -47,11 +47,15 @@ I like to commit `.local` files into this branch as I use these changes on multi
 want this same functionality. Go into the `.gitignore` on your branch and comment out the line ignoring
 them.
 
-## Note on "private info"
+### SECURITY NOTICE
+
+**There is a
+gitignore entry to protect you from entering these into github, but do not rely on that!**
 
 There are a few files that are extended to also include a ".private" suffix. This is where I suggest
-placing private keys if you must. Things like `NPM_TOKEN` or `AWS_ACCESS_KEY_ID` values. **There is a
-gitignore entry to protect you from entering these into github, but do not rely on that!**
+placing private keys if you must. Things like `NPM_TOKEN` or `AWS_ACCESS_KEY_ID` values.
+
+## Example Customizations
 
 Put your customizations in dotfiles appended with `.local`:
 
