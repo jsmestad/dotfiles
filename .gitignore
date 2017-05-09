@@ -5,4 +5,4 @@
 *.private
 
 # Comment out this ignore in your self branch, it protects master from local changes
-*.local
+# *.local
