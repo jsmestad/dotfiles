@@ -1,54 +1,67 @@
 dotfiles
 ========
 
-Requirements
-------------
+This dotfiles repo requires `zsh` to be installed on your machine.
 
-Set `zsh` as your login shell:
+If your on OSX, I use the [Homebrew]() version of `zsh` as it tends to be newer than the bundled version.
 
-    chsh -s $(which zsh)
+```
+brew install zsh
+command -v zsh | sudo tee -a /etc/shells
+chsh -s $(which zsh)
+```
 
 Install
 -------
 
-Clone onto your laptop:
+```
 
-    git clone git://github.com/jsmestad/dotfiles.git
+brew tap thoughtbot/formulae
+brew install rcm
 
-(Or, [fork and keep your fork
-updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
+mkdir -p $HOME/code/self
+git clone git://github.com/jsmestad/dotfiles.git $HOME/code/self/dotfiles
+cd $HOME/code/self
+rcup -d dotfiles -x README.md -x LICENSE -x Brewfile
+```
 
-Install [rcm](https://github.com/thoughtbot/rcm):
+Upgrading dotfiles
+------------------
 
-    brew tap thoughtbot/formulae
-    brew install rcm
+Once you pull down changes, you can safely run `rcup` anywhere on your machine. Once completed, I
+suggest using a new shell window as many changes may not show up.
 
-Install:
-
-    rcup -d dotfiles -x README.md -x LICENSE -x Brewfile
-
-This will create symlinks for config files in your home directory. The `-x`
-options, which exclude the `README.md`, `LICENSE`, and `Brewfile` files, are
-needed during installation but can be skipped once the `.rcrc` configuration
-file is symlinked in.
-
-You can safely run `rcup` multiple times to update:
-
-    rcup
 
 Make your own customizations
 ----------------------------
 
+Customizations that are not intended for upstream are best placed in a branch off master. I personally
+use a `self` branch and place my customizations there. This eases pull down global changes.
+
+Let's say you want to customize `zshrc` with something. Switch to your `self` branch, create a file
+named `zshrc.local` and commit that. Running `rcup` will place the file in your home directory.
+
+## `self` branch
+
+I like to commit `.local` files into this branch as I use these changes on multiple machines. If you
+want this same functionality. Go into the `.gitignore` on your branch and comment out the line ignoring
+them.
+
+## Note on "private info"
+
+There are a few files that are extended to also include a ".private" suffix. This is where I suggest
+placing private keys if you must. Things like `NPM_TOKEN` or `AWS_ACCESS_KEY_ID` values. **There is a
+gitignore entry to protect you from entering these into github, but do not rely on that!**
+
 Put your customizations in dotfiles appended with `.local`:
 
-* `~/.aliases.local`
-* `~/.antigenrc.local`
-* `~/.gitconfig.local`
-* `~/.gvimrc.local`
-* `~/.tmux.conf.local`
-* `~/.vimrc.local`
-* `~/.vimrc.bundles.local`
-* `~/.zshrc.local`
+* `aliases.local`
+* `gitconfig.local`
+* `gvimrc.local`
+* `tmux.conf.local`
+* `vimrc.local`
+* `vimrc.bundles.local`
+* `zshrc.local`
 
 For example, your `~/.aliases.local` might look like this:
 
@@ -74,54 +87,3 @@ Your `~/.vimrc.bundles.local` might look like this:
 
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'stephenmckinney/vim-solarized-powerline'
-
-What's in it?
--------------
-
-[vim](http://www.vim.org/) configuration:
-
-* [Ctrl-P](https://github.com/kien/ctrlp.vim) for fuzzy file/buffer/tag finding.
-* [Rails.vim](https://github.com/tpope/vim-rails) for enhanced navigation of
-  Rails file structure via `gf` and `:A` (alternate), `:Rextract` partials,
-  `:Rinvert` migrations, etc.
-* Run [RSpec](https://www.relishapp.com/rspec) specs from vim.
-* Set `<leader>` to a single space.
-* Switch between the last two files with space-space.
-  HTML.
-* Use [Ag](https://github.com/ggreer/the_silver_searcher) instead of Grep when
-  available.
-* Use [Exuberant Ctags](http://ctags.sourceforge.net/) for tab completion.
-* Use [Vundle](https://github.com/gmarik/vundle) to manage plugins.
-
-[tmux](http://robots.thoughtbot.com/a-tmux-crash-course)
-configuration:
-
-* Improve color resolution.
-* Remove administrative debris (session name, hostname, time) in status bar.
-* Set prefix to `Ctrl+a` (like GNU screen).
-* Soften status bar color from harsh green to light gray.
-
-[git](http://git-scm.com/) configuration:
-
-* Adds a `create-branch` alias to create feature branches.
-* Adds a `delete-branch` alias to delete feature branches.
-* Adds a `merge-branch` alias to merge feature branches into master.
-* Adds an `up` alias to fetch and rebase `origin/master` into the feature
-  branch. Use `git up -i` for interactive rebases.
-
-[zsh](http://www.zsh.org/) configuration:
-
-* Adds support for [zplug](https://github.com/zplug/zplug) config manager.
-* Includes extensions for `git` and `git-extras`.
-
-Credits
--------
-
-Original Credits:
-
-    Dotfiles is maintained by [thoughtbot, inc](http://thoughtbot.com/community)
-    The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-    Dotfiles is Â© 2009-2014 thoughtbot, inc. It is free software and may be
-    redistributed under MIT LICENSE.
-
