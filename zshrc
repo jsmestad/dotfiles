@@ -1,4 +1,3 @@
-
 # Disable "flow control"
 setopt noflowcontrol
 
