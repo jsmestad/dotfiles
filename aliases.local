@@ -1,3 +1,5 @@
 alias cdmikasa="cd ~/code/homebot/mikasa"
 alias cdhbapi="cd ~/code/homebot/api"
 alias cdhbweb="cd ~/code/homebot/web"
+
+alias tmux="direnv exec / tmux"
