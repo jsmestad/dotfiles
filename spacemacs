@@ -399,9 +399,14 @@ you should place your code here."
   ;; Indenting
   (setq-default indent-tabs-mode nil
                 tab-width 2
-                css-indent-offset 2
                 js2-basic-offset 2
-                js-indent-level 2)
+                js-indent-level 2
+                ;; web-mode
+                css-indent-offset 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2
+                web-mode-attr-indent-offset 2)
 
   ;; Prevent the visual selection overriding my system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
@@ -411,7 +416,7 @@ you should place your code here."
   ;; Disable Mouse, we use a GUI
   (xterm-mouse-mode -1)
 
-  ;; Use all-the-icons for NeoTre
+  ;; Use all-the-icons for NeoTree
   (setq neo-theme 'icons)
 
   (setq linum-format "\u2502 %3d ")
@@ -425,7 +430,6 @@ you should place your code here."
   (with-eval-after-load 'neotree
     (evil-define-key 'evilified neotree-mode-map (kbd "o") 'neotree-enter)
     (evil-define-key 'evilified neotree-mode-map (kbd "I") 'neotree-hidden-file-toggle))
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
