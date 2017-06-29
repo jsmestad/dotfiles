@@ -39,13 +39,13 @@ values."
      elixir
      emacs-lisp
      git
-     helm
+     ivy
      html
      javascript
      markdown
      osx
      (ruby :variables
-           ruby-version-manager 'rvm
+           ruby-version-manager 'rbenv
            ruby-test-runner 'rspec)
      ruby-on-rails
      spell-checking
@@ -411,6 +411,23 @@ you should place your code here."
   ;; Prevent the visual selection overriding my system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
+
+  ;; Configure js2-mode to ignore certain warnings for .spec.js files
+  (with-eval-after-load "js2-mode"
+
+    (setq-default
+     js2-ignored-warnings
+     '("msg.return.inconsistent" "msg.anon.no.return.value" "msg.no.return.value"))
+
+    (make-variable-buffer-local 'js2-ignored-warnings)
+
+    (defun my-js2-test-file-setup ()
+      (when (string-match-p ".spec.js$" (buffer-file-name))
+        (push "msg.no.side.effects" js2-ignored-warnings)))
+
+    (add-hook 'js2-mode-hook 'my-js2-test-file-setup))
+
+  ;; Do not show hidden files by default in NeoTree
   (setq neo-show-hidden-files nil)
 
   ;; Disable Mouse, we use a GUI
@@ -444,7 +461,7 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (sql-indent helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional company-statistics auto-yasnippet ac-ispell auto-complete memoize powerline spinner hydra parent-mode projectile helm-dash flx iedit anzu evil goto-chg undo-tree highlight f diminish dash-at-point bind-map bind-key packed s dash pkg-info epl avy popup async dockerfile-mode docker tablist docker-tramp smartparens helm helm-core jellybeans-plus-theme flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary reveal-in-osx-finder projectile-rails inflections pbcopy osx-trash osx-dictionary launchctl feature-mode ujelly-theme unfill mwim yaml-mode web-mode web-beautify tern tagedit spaceline-all-the-icons smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake pug-mode orgit ob-elixir mmm-mode minitest markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc helm-gitignore helm-css-scss haml-mode gruvbox-theme autothemer gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-mix flycheck-credo flycheck evil-magit magit magit-popup git-commit with-editor emmet-mode diff-hl coffee-mode chruby bundler inf-ruby all-the-icons font-lock+ alchemist company elixir-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (wgrep smex ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ivy sql-indent helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional company-statistics auto-yasnippet ac-ispell auto-complete memoize powerline spinner hydra parent-mode projectile helm-dash flx iedit anzu evil goto-chg undo-tree highlight f diminish dash-at-point bind-map bind-key packed s dash pkg-info epl avy popup async dockerfile-mode docker tablist docker-tramp smartparens helm helm-core jellybeans-plus-theme flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary reveal-in-osx-finder projectile-rails inflections pbcopy osx-trash osx-dictionary launchctl feature-mode ujelly-theme unfill mwim yaml-mode web-mode web-beautify tern tagedit spaceline-all-the-icons smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake pug-mode orgit ob-elixir mmm-mode minitest markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc helm-gitignore helm-css-scss haml-mode gruvbox-theme autothemer gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-mix flycheck-credo flycheck evil-magit magit magit-popup git-commit with-editor emmet-mode diff-hl coffee-mode chruby bundler inf-ruby all-the-icons font-lock+ alchemist company elixir-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
