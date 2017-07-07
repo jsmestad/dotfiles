@@ -412,6 +412,12 @@ you should place your code here."
   (fset 'evil-visual-update-x-selection 'ignore)
 
 
+  ;; inky-rb uses the `.inky-erb` extension
+  ;; make this render like ERB
+  (add-to-list 'auto-mode-alist '("\\.inky-erb\\'" . web-mode))
+  (setq web-mode-engines-alist
+        '(("erb"    . "\\.inky-erb\\'")))
+
   ;; Configure js2-mode to ignore certain warnings for .spec.js files
   (with-eval-after-load "js2-mode"
 
