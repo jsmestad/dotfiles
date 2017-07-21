@@ -21,10 +21,12 @@
 [commit]
   template = ~/.gitmessage
 [push]
-  default = current
+  default = simple
 [pull]
   ff = only
 [credential]
   helper = osxkeychain
 [init]
   templatedir = ~/.git_template
+[branch]
+  autosetupmerge = always

@@ -10,7 +10,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Define bundles via Github repos
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
 
 Bundle 'burnettk/vim-angular'
