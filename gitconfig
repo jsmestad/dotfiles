@@ -21,7 +21,7 @@
 [commit]
   template = ~/.gitmessage
 [push]
-  default = simple
+  default = current
 [pull]
   ff = only
 [credential]
