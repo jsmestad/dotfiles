@@ -386,9 +386,6 @@ you should place your code here."
   ;; Version Control
   (setq vc-follow-symlinks t)
 
-  ;; Switch evil-escape to ii
-  (setq-default evil-escape-key-sequence "ii")
-
   ;; Speed up Projectile by using `sh` (for ZSH, if its slow)
   ;; Test shell speed with:
   ;;
