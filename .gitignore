@@ -1,5 +1,6 @@
 !bin
 /vim/bundle
+npmrc
 
 # Never place `.private` files in git
 *.private
