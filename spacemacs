@@ -383,6 +383,12 @@ you should place your code here."
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
+  ;; Fix Ivy selection to be optional
+  (setq ivy-use-selectable-prompt t)
+
+  ;; Give me more time to enter 'fd'
+  (setq-default evil-escape-delay 0.3)
+
   ;; Version Control
   (setq vc-follow-symlinks t)
 
