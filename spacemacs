@@ -365,12 +365,13 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
   ;; General Settings
   (setq create-lockfiles nil
         show-trailing-whitespace t
         flycheck-rubocop-lint-only t
         flycheck-check-syntax-automatically '(mode-enabled save))
+  ;; Enable pretty symbols everywhere
+  (global-prettify-symbols-mode)
 
   ;; Include underscores in word motion
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -443,6 +444,27 @@ you should place your code here."
         (push "msg.no.side.effects" js2-ignored-warnings)))
 
     (add-hook 'js2-mode-hook 'my-js2-test-file-setup))
+
+
+  ;; disable jshint, use eslint man!
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  ;; use local eslint from node_modules before global
+  ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                  (or (buffer-file-name) default-directory)
+                  "node_modules"))
+           (eslint (and root
+                        (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                          root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+
+
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
   ;; Do not show hidden files by default in NeoTree
   (setq neo-show-hidden-files nil)
