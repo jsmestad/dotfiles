@@ -369,7 +369,8 @@ you should place your code here."
   (setq create-lockfiles nil
         show-trailing-whitespace t
         flycheck-rubocop-lint-only t
-        flycheck-check-syntax-automatically '(mode-enabled save))
+        flycheck-check-syntax-automatically '(mode-enabled save)
+        ruby-align-to-stmt-keywords '(if while unless until begin case for def))
   ;; Enable pretty symbols everywhere
   (global-prettify-symbols-mode)
 
@@ -423,7 +424,6 @@ you should place your code here."
   ;; Prevent the visual selection overriding my system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
-
   ;; inky-rb uses the `.inky-erb` extension
   ;; make this render like ERB
   (add-to-list 'auto-mode-alist '("\\.inky-erb\\'" . web-mode))
@@ -466,14 +466,25 @@ you should place your code here."
 
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-  ;; Do not show hidden files by default in NeoTree
-  (setq neo-show-hidden-files nil)
+  ;; NeoTree changes
+  ;; * Do not show hidden files by default
+  ;; * Allow resize of the NeoTree window
+  ;; * Set window width default
+  ;; * Auto indent at point when navigating
+  ;; * Use all-the-icons for NeoTree
+  (setq neo-show-hidden-files nil
+        neo-window-fixed-size nil
+        neo-window-width 32
+        neo-auto-indent-point t
+        neo-theme 'icons)
+  ;; Use `o` and `I` in NeoTree and mimic NERDTree
+  (with-eval-after-load 'neotree
+    (evil-define-key 'evilified neotree-mode-map (kbd "o") 'neotree-enter)
+    (evil-define-key 'evilified neotree-mode-map (kbd "I") 'neotree-hidden-file-toggle))
+  )
 
   ;; Disable Mouse, we use a GUI
   (xterm-mouse-mode -1)
-
-  ;; Use all-the-icons for NeoTree
-  (setq neo-theme 'icons)
 
   (setq linum-format "\u2502 %3d ")
 
@@ -482,11 +493,6 @@ you should place your code here."
 
   ;; Bind F8 to open neotree
   (global-set-key [f8] 'neotree-toggle)
-
-  (with-eval-after-load 'neotree
-    (evil-define-key 'evilified neotree-mode-map (kbd "o") 'neotree-enter)
-    (evil-define-key 'evilified neotree-mode-map (kbd "I") 'neotree-hidden-file-toggle))
-  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
