@@ -424,6 +424,9 @@ you should place your code here."
   ;; Prevent the visual selection overriding my system clipboard
   (fset 'evil-visual-update-x-selection 'ignore)
 
+  ;; Don't use spring
+  (setq-default rspec-use-spring-when-possible nil)
+
   ;; inky-rb uses the `.inky-erb` extension
   ;; make this render like ERB
   (add-to-list 'auto-mode-alist '("\\.inky-erb\\'" . web-mode))
