@@ -394,6 +394,13 @@ you should place your code here."
   ;; Version Control
   (setq vc-follow-symlinks t)
 
+  ;; This problem may be related with wid-edit.el and mouse-1-click-follows-link.
+  ;; Now I can avoid automatic yank by putting the following config in spacemacs/user-config.
+  (add-hook 'spacemacs-buffer-mode-hook (lambda () (set (make-local-variable 'mouse-1-click-follows-link) nil)))
+  (add-hook 'prog-mode-hook (lambda () (set (make-local-variable 'mouse-1-click-follows-link) nil)))
+  (add-hook 'prog-mode-hook (lambda () (set (make-local-variable 'mouse-highlight) nil)))
+
+
   ;; Speed up Projectile by using `sh` (for ZSH, if its slow)
   ;; Test shell speed with:
   ;;
