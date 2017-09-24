@@ -1,5 +1,10 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+else
+  export ZPLUG_HOME=~/.zplug
+  source $ZPLUG_HOME/init.zsh
+fi
 
 zplug "~/.zsh", from:local, use:"{awscli-vars,ruby}.zsh"
 zplug "~/.zsh", from:local, use:"java-osx.zsh", if:"[[ $OSTYPE == *darwin* ]]"
