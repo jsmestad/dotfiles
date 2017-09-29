@@ -1,7 +1,10 @@
 alias cdmikasa="cd ~/code/homebot/mikasa"
-alias cdhbapi="cd ~/code/homebot/api"
-alias cdhbweb="cd ~/code/homebot/web"
 alias cdlockbox="cd ~/code/homebot/lockbox"
-alias cdms="cd ~/code/homebot/main_street"
+alias cdms="npm --version >/dev/null 2>&1 && cd ~/code/homebot/main_street"
+
+# Add `npm --version` to ensure zsh-nvm has loaded in the shell
+# If missing, .nvmrc detection will not work due to zsh-nvm using lazy loading
+alias cdhbapi="npm --version >/dev/null 2>&1 && cd ~/code/homebot/api"
+alias cdhbweb="npm --version >/dev/null 2>&1 && cd ~/code/homebot/web"
 
 alias tmux="direnv exec / tmux"

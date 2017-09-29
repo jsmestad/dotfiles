@@ -33,8 +33,12 @@ export EDITOR='vim'
 # enable colored output from ls, etc
 export CLICOLOR=1
 
+# NVM settings (Node.JS)
+#
 # Lazy load nvm on first use
 export NVM_LAZY_LOAD=true
+# NVM auto use
+export NVM_AUTO_USE=true
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
