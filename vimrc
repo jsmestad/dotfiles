@@ -32,7 +32,7 @@ set softtabstop=2
 set shiftwidth=2
 set tabstop=2
 set expandtab
-set shell=/usr/local/bin/zsh
+set shell=/usr/bin/zsh
 
 " Numbers
 set number
@@ -54,7 +54,7 @@ let g:bufExplorerShowRelativePath=1
 let g:yankring_persist=0
 
 " Set Font
-set guifont=PanicSans:h15
+set guifont=Hack:h15
 
 " Get off my lawn (make vim keys, not war)
 nnoremap <Left> :echoe "Use h"<CR>
