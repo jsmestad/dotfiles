@@ -37,6 +37,9 @@ export CLICOLOR=1
 # Lazy load nvm on first use
 export NVM_LAZY_LOAD=true
 
+# direnv
+eval "$(direnv hook zsh)"
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 

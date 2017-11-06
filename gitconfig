@@ -28,3 +28,5 @@
 	helper = osxkeychain
 [init]
 	templatedir = ~/.git_template
+[branch]
+  autosetupmerge = always
