@@ -40,6 +40,9 @@ export NVM_LAZY_LOAD=true
 # NVM auto use
 export NVM_AUTO_USE=true
 
+# direnv
+eval "$(direnv hook zsh)"
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
 
